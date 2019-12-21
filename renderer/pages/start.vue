@@ -43,7 +43,7 @@
 				</b-form-group>
 			</tab-content>
 			<tab-content title="دریافت متن">
-				<p v-text="templateText"></p>
+				<div v-html="templateText"></div>
 			</tab-content>
 		</form-wizard>
 	</div>
@@ -70,7 +70,10 @@ export default {
 				item => item.value === this.form.type
 			);
 			const content = template ? template.templates[0].content : "";
-			return content.replace(/%%title%%/gi, this.form.title).replace(/%%description%%/gi, this.form.description);
+			return "<p>" + content
+				.replace(/%%title%%/gi, this.form.title)
+        .replace(/%%description%%/gi, this.form.description)
+        .replace(/(?:\r\n|\r|\n)/g, "</p><p>") + "</p>";
 		}
 	},
 	watch: {
