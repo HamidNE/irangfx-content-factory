@@ -4,9 +4,8 @@
 	>
 		<form-wizard
 			stepSize="sm"
-			class="w-100"
+			class="w-100 min-vh-100 d-flex flex-column"
 			title=""
-      shape="tab"
 			subtitle=""
 			nextButtonText="بعدی"
 			backButtonText="قبلی"
@@ -14,19 +13,44 @@
 			@on-complete="complete"
 		>
 			<tab-content title="انتخاب نوع">
-				انتخاب نوع
+				<b-form-group id="input-group-3" label="نوع محتوا:" label-for="input-3">
+					<b-form-select
+						id="input-3"
+						v-model="form.type"
+						:options="templates"
+						required
+					></b-form-select>
+				</b-form-group>
 			</tab-content>
 			<tab-content title="انتخاب عنوان">
-				انتخاب عنوان
+				<b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+					<b-form-input
+						id="input-2"
+						v-model="form.title"
+						required
+						placeholder="Enter name"
+					></b-form-input>
+				</b-form-group>
 			</tab-content>
 			<tab-content title="انتخاب توضیحات">
-				انتخاب توضیحات
+				<b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+					<b-form-input
+						id="input-2"
+						v-model="form.description"
+						required
+						placeholder="Enter name"
+					></b-form-input>
+				</b-form-group>
+			</tab-content>
+			<tab-content title="دریافت متن">
+				<p v-text="templateText"></p>
 			</tab-content>
 		</form-wizard>
 	</div>
 </template>
 
 <script>
+import templates from "~/data/templates";
 import { FormWizard, TabContent } from "vue-form-wizard";
 export default {
 	components: {
@@ -34,8 +58,26 @@ export default {
 		TabContent
 	},
 	data: () => ({
-		form: {}
+		form: {},
+		templates
 	}),
+	computed: {
+		templateText() {
+			if (!this.form.title || !this.form.description || !this.form.type) {
+				return "";
+			}
+			const template = this.templates.find(
+				item => item.value === this.form.type
+			);
+			const content = template ? template.templates[0].content : "";
+			return content.replace(/%%title%%/gi, this.form.title).replace(/%%description%%/gi, this.form.description);
+		}
+	},
+	watch: {
+		form(value) {
+			console.log(value);
+		}
+	},
 	methods: {
 		complete() {
 			console.log("asdasdasdasd");
@@ -52,6 +94,9 @@ export default {
 	}
 	.wizard-progress-bar {
 		float: right;
+	}
+	.wizard-card-footer {
+		margin-top: auto;
 	}
 }
 </style>
