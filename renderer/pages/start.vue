@@ -23,7 +23,7 @@
 				</b-form-group>
 			</tab-content>
 			<tab-content title="انتخاب عنوان">
-				<b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+				<b-form-group label="عنوان:" label-for="input-2">
 					<b-form-input
 						id="input-2"
 						v-model="form.title"
@@ -33,13 +33,14 @@
 				</b-form-group>
 			</tab-content>
 			<tab-content title="انتخاب توضیحات">
-				<b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-					<b-form-input
-						id="input-2"
+				<b-form-group label="توضیحات:" label-for="input-textarea">
+					<b-form-textarea
+						id="input-textarea"
 						v-model="form.description"
-						required
-						placeholder="Enter name"
-					></b-form-input>
+						placeholder="Enter something..."
+						rows="3"
+						max-rows="6"
+					></b-form-textarea>
 				</b-form-group>
 			</tab-content>
 			<tab-content title="دریافت متن">
@@ -70,10 +71,14 @@ export default {
 				item => item.value === this.form.type
 			);
 			const content = template ? template.templates[0].content : "";
-			return "<p>" + content
-				.replace(/%%title%%/gi, this.form.title)
-        .replace(/%%description%%/gi, this.form.description)
-        .replace(/(?:\r\n|\r|\n)/g, "</p><p>") + "</p>";
+			return (
+				"<p>" +
+				content
+					.replace(/%%title%%/gi, this.form.title)
+					.replace(/%%description%%/gi, this.form.description)
+					.replace(/(?:\r\n|\r|\n)/g, "</p><p>") +
+				"</p>"
+			);
 		}
 	},
 	watch: {
