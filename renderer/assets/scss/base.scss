@@ -1,0 +1,55 @@
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 0.2s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
+}
+
+@for $i from 0 through 9 {
+	.font_1#{$i} {
+		font-size: #{(1 + ($i / 10))}rem !important;
+	}
+}
+
+a:focus,
+a:hover {
+	text-decoration: none;
+}
+
+.text-in-one-line {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.invalid-feedback {
+	display: block;
+}
+
+.nav-tabs-line {
+	border-bottom: 3px solid rgba(255, 93, 93, 0.1);
+
+	.nav-link {
+		cursor: pointer;
+
+		&:hover {
+			border-color: transparent;
+		}
+
+		&.active {
+			margin-bottom: -3px;
+			background-color: unset;
+			color: rgb(255, 93, 93);
+			border-color: transparent;
+			border-bottom: 3px solid rgba(255, 93, 93, 0.7);
+		}
+	}
+}
+
+.progress.filed {
+	height: 0.5rem;
+	.progress-bar.bg-secondary {
+		background: #a8c5d6 !important;
+	}
+}
