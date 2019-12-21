@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "my-app",
+  "description": "My application description",
+  "version": "1.0.0",
+  "author": "HamidNE <hamidne@mail.ru>",
+  "main": "app/background.js",
+  "scripts": {
+    "dev": "nuxtron",
+    "build": "nuxtron build"
+  },
+  "dependencies": {
+    "electron-serve": "^0.4.0",
+    "electron-store": "^5.0.0",
+    "shabnam-font": "^5.0.0"
+  },
+  "devDependencies": {
+    "electron": "^6.0.12",
+    "electron-builder": "^21.2.0",
+    "nuxt": "^2.10.1",
+    "nuxtron": "^0.2.1"
+  }
+}

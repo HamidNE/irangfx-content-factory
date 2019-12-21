@@ -1,0 +1,12 @@
+appId: com.irangfx.app
+productName: IranGFX Content Factory
+copyright: Copyright © 2019 HamidNE
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
