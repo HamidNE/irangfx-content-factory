@@ -13,7 +13,8 @@
     "bootstrap-vue": "^2.1.0",
     "electron-serve": "^0.4.0",
     "electron-store": "^5.0.0",
-    "shabnam-font": "^5.0.0"
+    "shabnam-font": "^5.0.0",
+    "vue-form-wizard": "^0.8.4"
   },
   "devDependencies": {
     "electron": "^6.0.12",
