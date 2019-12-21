@@ -1,40 +1,28 @@
 <template>
-  <div class="container">
-    <img src="/nuxt.png">
-    <h2>کارخانه تولید محتوا</h2>
-    <p>Loaded from the {{ name }}</p>
-    <p>
-      <NuxtLink to="/about">
-        About
-      </NuxtLink>
-    </p>
-  </div>
+	<div class="container">
+		<img src="~/assets/svg/logo-irangfx.svg" />
+		<h2>کارخانه تولید محتوا</h2>
+		<p>
+			<nuxt-link to="/start">
+				شروع
+			</nuxt-link>
+		</p>
+	</div>
 </template>
 
 <script>
-export default {
-  asyncData ({ req }) {
-    return {
-      name: process.static ? 'static' : (process.server ? 'server' : 'client'),
-    }
-  }
-}
+export default {};
 </script>
 
 <style scoped>
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: white;
-  color: black;
-  font-family: "Shabnam", Monaco, monospace;
-  padding-top: 100px;
-  text-align: center;
+	display: flex;
+	min-height: 100vh;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 }
-a {
-  color: black;
+img {
+	width: 300px;
 }
 </style>

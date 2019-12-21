@@ -10,6 +10,7 @@
     "build": "nuxtron build"
   },
   "dependencies": {
+    "bootstrap-vue": "^2.1.0",
     "electron-serve": "^0.4.0",
     "electron-store": "^5.0.0",
     "shabnam-font": "^5.0.0"
