@@ -28,7 +28,6 @@
 						id="input-2"
 						v-model="form.title"
 						required
-						placeholder="Enter name"
 					></b-form-input>
 				</b-form-group>
 			</tab-content>
@@ -37,14 +36,18 @@
 					<b-form-textarea
 						id="input-textarea"
 						v-model="form.description"
-						placeholder="Enter something..."
 						rows="3"
 						max-rows="6"
 					></b-form-textarea>
 				</b-form-group>
 			</tab-content>
 			<tab-content title="دریافت متن">
-				<div v-html="templateText"></div>
+				<div
+					id="text-generated"
+					@click="copyText"
+					class="text-justify rounded p-3"
+					v-html="templateHTML"
+				></div>
 			</tab-content>
 		</form-wizard>
 	</div>
@@ -63,6 +66,11 @@ export default {
 		templates
 	}),
 	computed: {
+		templateHTML() {
+			return (
+				"<p>" + this.templateText.replace(/(?:\r\n|\r|\n)/g, "</p><p>") + "</p>"
+			);
+		},
 		templateText() {
 			if (!this.form.title || !this.form.description || !this.form.type) {
 				return "";
@@ -71,14 +79,9 @@ export default {
 				item => item.value === this.form.type
 			);
 			const content = template ? template.templates[0].content : "";
-			return (
-				"<p>" +
-				content
-					.replace(/%%title%%/gi, this.form.title)
-					.replace(/%%description%%/gi, this.form.description)
-					.replace(/(?:\r\n|\r|\n)/g, "</p><p>") +
-				"</p>"
-			);
+			return content
+				.replace(/%%title%%/gi, this.form.title)
+				.replace(/%%description%%/gi, this.form.description);
 		}
 	},
 	watch: {
@@ -89,6 +92,11 @@ export default {
 	methods: {
 		complete() {
 			console.log("asdasdasdasd");
+		},
+		copyText() {
+			navigator.clipboard
+				.writeText(this.templateText)
+				.then(() => alert('متن با موفقیت کپی شد.'));
 		}
 	}
 };
@@ -105,6 +113,13 @@ export default {
 	}
 	.wizard-card-footer {
 		margin-top: auto;
+	}
+}
+#text-generated {
+	cursor: pointer;
+	transition: all 0.3s ease;
+	&:hover {
+		background: #00000007;
 	}
 }
 </style>
