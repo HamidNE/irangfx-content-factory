@@ -1,5 +1,5 @@
 export default {
-	title: "Nuxtron (with-javascript)",
+	title: "IranGFX - content factory",
 	htmlAttrs: {
 		dir: "rtl",
 		lang: "fa"
